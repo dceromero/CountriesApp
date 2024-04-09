@@ -1,0 +1,8 @@
+<h2>Paises</h2>
+<hr>
+
+<ul class="list-group" *ngFor="let menu of getMenu">
+    <li class="list-group-item list-group-item-action" routerLink="{{menu.url}}" routerLinkActive="active">
+        {{menu.name}}
+    </li>
+</ul>
