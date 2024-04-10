@@ -7,12 +7,20 @@ import { CountryInterface } from '../../interfaces/country.interface';
   templateUrl: './by-region-page.component.html',
   styles: ``
 })
-export class ByRegionPageComponent {
-  constructor(private countriesService: CountriesService){}
 
-  public countries:CountryInterface[]=[]
-  searchByRegion(value:string):void{
-    if(value.length ===0) return;
-    this.countriesService.searchByRegion(value).subscribe(x=> this.countries=[...x]);
+
+export class ByRegionPageComponent {
+  constructor(private countriesService: CountriesService) { }
+
+  public regions: string[] = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
+
+  public countries: CountryInterface[] = []
+  
+  public selectedRegion:string ='';
+
+  searchByRegion(value: string): void {
+    this.selectedRegion = value;
+    if (value.length === 0) return;
+    this.countriesService.searchByRegion(value).subscribe(x => this.countries = [...x]);
   }
 }

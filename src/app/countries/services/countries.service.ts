@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, delay, map, of } from 'rxjs';
 import { CountryInterface } from '../interfaces/country.interface';
 
 @Injectable({
@@ -9,15 +9,15 @@ import { CountryInterface } from '../interfaces/country.interface';
 export class CountriesService {
 
   private apyUrl: string = 'https://restcountries.com/v3.1';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+     console.log('CountriesService inicio')
+   }
 
-  searchBy(term: string): Observable<CountryInterface[]> {
+  private searchBy(term: string): Observable<CountryInterface[]> {
     return this.http.get<CountryInterface[]>(`${this.apyUrl}/${term}`)
     .pipe(
-      catchError( error => {
-        console.error(error);
-        return of([]);
-      })
+      catchError( ()=> of([])), 
+      // delay(2000)
     );
   }
 

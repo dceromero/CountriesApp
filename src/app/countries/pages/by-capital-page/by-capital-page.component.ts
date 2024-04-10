@@ -8,12 +8,18 @@ import { CountryInterface } from '../../interfaces/country.interface';
 })
 export class ByCapitalPageComponent {
 
-public countries:CountryInterface[]=[]
+  public countries: CountryInterface[] = []
 
-  constructor(private countriesService: CountriesService){}
+  public isLoading: boolean = false
 
-  searchByCapital(value:string):void{
-    if(value.length ===0) return;
-    this.countriesService.searchByCapital(value).subscribe(x=> this.countries =[...x]);
+  constructor(private countriesService: CountriesService) { }
+
+  searchByCapital(value: string): void {
+    this.isLoading = true;
+    if (value.length === 0) return;
+    this.countriesService.searchByCapital(value).subscribe(x => {
+      this.countries = [...x];
+      this.isLoading=false;
+    });
   }
 }

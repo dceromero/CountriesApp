@@ -1,7 +1,10 @@
 <div class="input-group mb-3">
-    <span class="input-group-text">Buscar</span>
-    <div class="form-floating">
-      <input type="text" class="form-control"  (keyup.Enter)="EmitValue(txtSearch.value)"  [placeholder]="placeHolder" #txtSearch>
-      <label for="txtSearch">{{placeHolder}}</label>
-    </div>
+  <span class="input-group-text">Buscar</span>
+  <div class="form-floating">
+    <input type="text" class="form-control" 
+    (keyup)="onKeyPress(txtSearch.value)"
+     (keyup.Enter)="EmitValue(txtSearch.value)" 
+     [placeholder]="placeHolder" #txtSearch>
+    <label for="txtSearch">{{placeHolder}}</label>
   </div>
+</div>
